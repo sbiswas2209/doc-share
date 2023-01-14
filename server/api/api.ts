@@ -1,5 +1,17 @@
 import { Router } from "express";
+import AuthRouter from "./auth/controller";
 
-const app = Router();
+class ApiRouter {
+  public router: Router;
 
-export default app;
+  constructor() {
+    this.router = Router();
+    this.setupRoutes();
+  }
+
+  setupRoutes() {
+    this.router.use("/auth", new AuthRouter().router);
+  }
+}
+
+export default ApiRouter;
